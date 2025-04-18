@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        min-width: 100%;
+        min-height: 100px;
+        background: #81d4fa;
+      }
+
+      .body {
+        width: 90%;
+        min-height: 200px;
+        padding: 10px;
+        margin: 0 auto;
+        background-color: #fafafa;
+      }
+      .title {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      #orders {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #orders td,
+      #orders th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #orders tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #orders tr:hover {
+        background-color: #ddd;
+      }
+
+      #orders th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #808080;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body" style="font-size: 16px">
+        <div><b>From:</b> <%= content.name %> - (<%= content.phone %>)</div>
+        <br />
+
+        <div>
+          <table id="orders">
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+            <% for (var i = 0; i < products.length; i++) { %>
+            <tr>
+              <td><%= products[i].name %></td>
+              <td><%= products[i].quantity %></td>
+              <td><%= parseInt(products[i].unit_price).toLocaleString() %></td>
+              <td>
+                <%= (products[i].unit_price *
+                products[i].quantity).toLocaleString() %>
+              </td>
+            </tr>
+            <% } %>
+          </table>
+        </div>
+        <br />
+
+        <div>
+          <b>Total:</b> Ksh. <%= content.total.toLocaleString() %><br />
+        </div>
+        <br />
+
+        <div><b>Delivery Address:</b> <%= content.location %></div>
+        <br />
+
+        <div><b>Payment Mode:</b> <%= content.paymentMode %></div>
+        <br />
+
+        <div><b>Instructions:</b> <%= content.details %></div>
+      </div>
+    </div>
+  </body>
+</html>

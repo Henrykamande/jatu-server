@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+
+      .header {
+        min-width: 100%;
+        min-height: 100px;
+        background: #81d4fa;
+      }
+
+      .body {
+        width: 90%;
+        min-height: 200px;
+        padding: 10px;
+        margin: 0 auto;
+        background-color: #fafafa;
+      }
+      .title {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      #orders {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      #orders td,
+      #orders th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      #orders tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #orders tr:hover {
+        background-color: #ddd;
+      }
+
+      #orders th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #808080;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="body" style="font-size: 16px">
+        <div>
+          From: <%= content.firstName %> <%= content.lastName %> - <%=
+          content.phone %>
+        </div>
+        <br /><br />
+        <div>Email: <%= content.email %></div>
+        <br /><br />
+        <div>How can you work with us:</div>
+        <br />
+        <%= content.workOption %>
+        <br />
+        <div>Country of business: <%= content.country %></div>
+        <br />
+        <div>Location: <%= content.location %></div>
+        <br />
+        <div>Nature of your business:</div>
+        <br />
+        <%= content.businessNature %>
+        <br />
+        <div>Would you like a call back? <%= content.backCall %></div>
+      </div>
+    </div>
+  </body>
+</html>
