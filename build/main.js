@@ -7892,7 +7892,7 @@ module.exports = router;
 /*!******************************************!*\
   !*** ./src/app/available-farms/index.js ***!
   \******************************************/
-/*! exports provided: findByCountry, findAll, fetchByUuid, findByUrl, findFarmById, findSubs, createRecord, addLand, reduceLand, editRecord */
+/*! exports provided: findByCountry, findAll, fetchByUuid, findByUrl, findFarmById, findFarmBySerialNo, findSubs, createRecord, addLand, reduceLand, editRecord */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7902,6 +7902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchByUuid", function() { return fetchByUuid; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findByUrl", function() { return findByUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findFarmById", function() { return findFarmById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findFarmBySerialNo", function() { return findFarmBySerialNo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findSubs", function() { return findSubs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRecord", function() { return createRecord; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addLand", function() { return addLand; });
@@ -7975,6 +7976,21 @@ async function findFarmById(req, res) {
   try {
     const record = await Controller.findOne({
       _id: req.params.id
+    });
+    return res.send({
+      record,
+      state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+; // Find farm by serial no.
+
+async function findFarmBySerialNo(req, res) {
+  try {
+    const record = await Controller.findOne({
+      serialNo: req.params.serialNo
     });
     return res.send({
       record,
@@ -8254,7 +8270,8 @@ const {
   reduceLand,
   findByCountry,
   fetchByUuid,
-  findFarmById
+  findFarmById,
+  findFarmBySerialNo
 } = __webpack_require__(/*! ./index.js */ "./src/app/available-farms/index.js");
 
 const router = __webpack_require__(/*! express */ "express").Router();
@@ -8264,6 +8281,7 @@ router.route('/add/land/:id').put(addLand);
 router.route('/reduce/land/available/:id').put(reduceLand);
 router.route('/fetch/farm/by/selected/country').post(findByCountry);
 router.route('/:url').get(findByUrl);
+router.route('/serial-no/:serialNo').get(findFarmBySerialNo);
 router.route('/get-by-id/:id').get(findFarmById);
 router.route('/edit/:id').put(editRecord);
 router.route("/query/:id").get(fetchByUuid);

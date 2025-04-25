@@ -51,6 +51,16 @@ export async function findFarmById(req, res) {
   } catch (err) {
     handleErr(res, err);
   }
+};
+
+// Find farm by serial no.
+export async function findFarmBySerialNo(req, res) {
+  try {
+    const record = await Controller.findOne({ serialNo: req.params.serialNo });
+    return res.send({ record, state: true });
+  } catch (err) {
+    handleErr(res, err);
+  }
 }
 
 export async function findSubs(req, res) {
