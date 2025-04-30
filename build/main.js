@@ -7583,7 +7583,7 @@ var cors = __webpack_require__(/*! cors */ "cors"); // mongoose stuffs
 
 const mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/jatu", {
+mongoose.connect("mongodb://127.0.0.1:27017/jani", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -8316,15 +8316,15 @@ const Controller = Object(_controller_js__WEBPACK_IMPORTED_MODULE_0__["default"]
 async function findAll(req, res) {
   try {
     const meta = {
-      url: "Shambani Connect",
-      metaTitle: "Shambani Connect",
-      h1: "Shambani Connect",
-      h2: "Shambani Connect",
-      pageDescription: "Shambani Connect",
-      metaDescription: "Shambani Connect",
-      pageTitle: "Shambani Connect",
-      pageContent: "Shambani Connect",
-      footerContent: "Shambani Connect",
+      url: "jubilant-afrofarms Connect",
+      metaTitle: "jubilant-afrofarms Connect",
+      h1: "jubilant-afrofarms Connect",
+      h2: "jubilant-afrofarms Connect",
+      pageDescription: "jubilant-afrofarms Connect",
+      metaDescription: "jubilant-afrofarms Connect",
+      pageTitle: "jubilant-afrofarms Connect",
+      pageContent: "jubilant-afrofarms Connect",
+      footerContent: "jubilant-afrofarms Connect",
       carouselImages: [],
       image: "",
       keywords: []
@@ -12169,15 +12169,15 @@ const Model = __webpack_require__(/*! ./model.js */ "./src/app/products/model.js
 async function findAll(req, res) {
   try {
     const meta = {
-      url: "Jatu Market",
-      metaTitle: "Jatu Market",
-      h1: "Jatu Market",
-      h2: "Jatu Market",
-      pageDescription: "Jatu Market",
-      metaDescription: "Jatu Market",
-      pageTitle: "Jatu Market",
-      pageContent: "Jatu Market",
-      footerContent: "Jatu Market",
+      url: "jani Market",
+      metaTitle: "jani Market",
+      h1: "jani Market",
+      h2: "jani Market",
+      pageDescription: "jani Market",
+      metaDescription: "jani Market",
+      pageTitle: "jani Market",
+      pageContent: "jani Market",
+      footerContent: "jani Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -12412,15 +12412,15 @@ async function findByCategory(req, res) {
     }); // get seo data
 
     const meta = {
-      url: "Jatu Market",
-      metaTitle: "Jatu Market",
-      h1: "Jatu Market",
-      h2: "Jatu Market",
-      pageDescription: "Jatu Market",
-      metaDescription: "Jatu Market",
-      pageTitle: "Jatu Market",
-      pageContent: "Jatu Market",
-      footerContent: "Jatu Market",
+      url: "jani Market",
+      metaTitle: "jani Market",
+      h1: "jani Market",
+      h2: "jani Market",
+      pageDescription: "jani Market",
+      metaDescription: "jani Market",
+      pageTitle: "jani Market",
+      pageContent: "jani Market",
+      footerContent: "jani Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -12466,15 +12466,15 @@ async function subcategoryProducts(req, res) {
     //get seo data
 
     const meta = {
-      url: "Jatu Market",
-      metaTitle: "Jatu Market",
-      h1: "Jatu Market",
-      h2: "Jatu Market",
-      pageDescription: "Jatu Market",
-      metaDescription: "Jatu Market",
-      pageTitle: "Jatu Market",
-      pageContent: "Jatu Market",
-      footerContent: "Jatu Market",
+      url: "jani Market",
+      metaTitle: "jani Market",
+      h1: "jani Market",
+      h2: "jani Market",
+      pageDescription: "jani Market",
+      metaDescription: "jani Market",
+      pageTitle: "jani Market",
+      pageContent: "jani Market",
+      footerContent: "jani Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -13775,15 +13775,15 @@ async function deleteRecord(req, res) {
 async function findAll(req, res) {
   try {
     const meta = {
-      url: "Shambani Connect",
-      metaTitle: "Shambani Connect",
-      h1: "Shambani Connect",
-      h2: "Shambani Connect",
-      pageDescription: "Shambani Connect",
-      metaDescription: "Shambani Connect",
-      pageTitle: "Shambani Connect",
-      pageContent: "Shambani Connect",
-      footerContent: "Shambani Connect",
+      url: "jubilant-afrofarms Connect",
+      metaTitle: "jubilant-afrofarms Connect",
+      h1: "jubilant-afrofarms Connect",
+      h2: "jubilant-afrofarms Connect",
+      pageDescription: "jubilant-afrofarms Connect",
+      metaDescription: "jubilant-afrofarms Connect",
+      pageTitle: "jubilant-afrofarms Connect",
+      pageContent: "jubilant-afrofarms Connect",
+      footerContent: "jubilant-afrofarms Connect",
       carouselImages: [],
       image: "",
       keywords: []
@@ -13801,15 +13801,15 @@ async function findAll(req, res) {
 async function activeProjects(req, res) {
   try {
     const meta = {
-      url: "Shambani Connect",
-      metaTitle: "Shambani Connect",
-      h1: "Shambani Connect",
-      h2: "Shambani Connect",
-      pageDescription: "Shambani Connect",
-      metaDescription: "Shambani Connect",
-      pageTitle: "Shambani Connect",
-      pageContent: "Shambani Connect",
-      footerContent: "Shambani Connect",
+      url: "jubilant-afrofarms Connect",
+      metaTitle: "jubilant-afrofarms Connect",
+      h1: "jubilant-afrofarms Connect",
+      h2: "jubilant-afrofarms Connect",
+      pageDescription: "jubilant-afrofarms Connect",
+      metaDescription: "jubilant-afrofarms Connect",
+      pageTitle: "jubilant-afrofarms Connect",
+      pageContent: "jubilant-afrofarms Connect",
+      footerContent: "jubilant-afrofarms Connect",
       carouselImages: [],
       image: "",
       keywords: []
@@ -13829,15 +13829,15 @@ async function activeProjects(req, res) {
 async function findByUrl(req, res) {
   try {
     const meta = {
-      url: "Shambani Connect",
-      metaTitle: "Shambani Connect",
-      h1: "Shambani Connect",
-      h2: "Shambani Connect",
-      pageDescription: "Shambani Connect",
-      metaDescription: "Shambani Connect",
-      pageTitle: "Shambani Connect",
-      pageContent: "Shambani Connect",
-      footerContent: "Shambani Connect",
+      url: "jubilant-afrofarms Connect",
+      metaTitle: "jubilant-afrofarms Connect",
+      h1: "jubilant-afrofarms Connect",
+      h2: "jubilant-afrofarms Connect",
+      pageDescription: "jubilant-afrofarms Connect",
+      metaDescription: "jubilant-afrofarms Connect",
+      pageTitle: "jubilant-afrofarms Connect",
+      pageContent: "jubilant-afrofarms Connect",
+      footerContent: "jubilant-afrofarms Connect",
       carouselImages: [],
       image: "",
       keywords: []
@@ -15109,15 +15109,15 @@ async function findAll(req, res) {
 async function findByUrl(req, res) {
   try {
     const meta = {
-      url: "Jatu Market",
-      metaTitle: "Jatu Market",
-      h1: "Jatu Market",
-      h2: "Jatu Market",
-      pageDescription: "Jatu Market",
-      metaDescription: "Jatu Market",
-      pageTitle: "Jatu Market",
-      pageContent: "Jatu Market",
-      footerContent: "Jatu Market",
+      url: "Jani Market",
+      metaTitle: "Jani Market",
+      h1: "Jani Market",
+      h2: "Jani Market",
+      pageDescription: "Jani Market",
+      metaDescription: "Jani Market",
+      pageTitle: "Jani Market",
+      pageContent: "Jani Market",
+      footerContent: "Jani Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -16695,7 +16695,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@jatumarket.com";
+const emailUser = "info@janimarket.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16713,7 +16713,7 @@ async function SendEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "info@jatumarket.com",
+    to: "info@janimarket.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)
@@ -16764,7 +16764,7 @@ async function SendEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "shambaniconnect@gmail.com",
+    to: "jubilantafrofarms@gmail.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)
@@ -16855,7 +16855,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@jatumarket.com";
+const emailUser = "info@janimarket.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendInsuranceEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16873,7 +16873,7 @@ async function SendInsuranceEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "info@jatumarket.com",
+    to: "info@janimarket.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)
@@ -16906,7 +16906,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@jatumarket.com";
+const emailUser = "info@janimarket.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16925,7 +16925,7 @@ async function SendEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "jatumarketk@gmail.com",
+    to: "janimarketk@gmail.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)

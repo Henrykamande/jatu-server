@@ -23,7 +23,7 @@ export async function SendEmail(data) {
 
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "shambaniconnect@gmail.com",
+    to: "jubilantafrofarms@gmail.com",
     subject: data.subject,
     html: htmlData,
   };
