@@ -7583,7 +7583,7 @@ var cors = __webpack_require__(/*! cors */ "cors"); // mongoose stuffs
 
 const mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/jani", {
+mongoose.connect("mongodb://127.0.0.1:27017/jubilantafrofarms", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -12169,15 +12169,15 @@ const Model = __webpack_require__(/*! ./model.js */ "./src/app/products/model.js
 async function findAll(req, res) {
   try {
     const meta = {
-      url: "jani Market",
-      metaTitle: "jani Market",
-      h1: "jani Market",
-      h2: "jani Market",
-      pageDescription: "jani Market",
-      metaDescription: "jani Market",
-      pageTitle: "jani Market",
-      pageContent: "jani Market",
-      footerContent: "jani Market",
+      url: "jubilantafrofarms Market",
+      metaTitle: "jubilantafrofarms Market",
+      h1: "jubilantafrofarms Market",
+      h2: "jubilantafrofarms Market",
+      pageDescription: "jubilantafrofarms Market",
+      metaDescription: "jubilantafrofarms Market",
+      pageTitle: "jubilantafrofarms Market",
+      pageContent: "jubilantafrofarms Market",
+      footerContent: "jubilantafrofarms Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -12412,15 +12412,15 @@ async function findByCategory(req, res) {
     }); // get seo data
 
     const meta = {
-      url: "jani Market",
-      metaTitle: "jani Market",
-      h1: "jani Market",
-      h2: "jani Market",
-      pageDescription: "jani Market",
-      metaDescription: "jani Market",
-      pageTitle: "jani Market",
-      pageContent: "jani Market",
-      footerContent: "jani Market",
+      url: "jubilantafrofarms Market",
+      metaTitle: "jubilantafrofarms Market",
+      h1: "jubilantafrofarms Market",
+      h2: "jubilantafrofarms Market",
+      pageDescription: "jubilantafrofarms Market",
+      metaDescription: "jubilantafrofarms Market",
+      pageTitle: "jubilantafrofarms Market",
+      pageContent: "jubilantafrofarms Market",
+      footerContent: "jubilantafrofarms Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -12466,15 +12466,15 @@ async function subcategoryProducts(req, res) {
     //get seo data
 
     const meta = {
-      url: "jani Market",
-      metaTitle: "jani Market",
-      h1: "jani Market",
-      h2: "jani Market",
-      pageDescription: "jani Market",
-      metaDescription: "jani Market",
-      pageTitle: "jani Market",
-      pageContent: "jani Market",
-      footerContent: "jani Market",
+      url: "jubilantafrofarms Market",
+      metaTitle: "jubilantafrofarms Market",
+      h1: "jubilantafrofarms Market",
+      h2: "jubilantafrofarms Market",
+      pageDescription: "jubilantafrofarms Market",
+      metaDescription: "jubilantafrofarms Market",
+      pageTitle: "jubilantafrofarms Market",
+      pageContent: "jubilantafrofarms Market",
+      footerContent: "jubilantafrofarms Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -15109,15 +15109,15 @@ async function findAll(req, res) {
 async function findByUrl(req, res) {
   try {
     const meta = {
-      url: "Jani Market",
-      metaTitle: "Jani Market",
-      h1: "Jani Market",
-      h2: "Jani Market",
-      pageDescription: "Jani Market",
-      metaDescription: "Jani Market",
-      pageTitle: "Jani Market",
-      pageContent: "Jani Market",
-      footerContent: "Jani Market",
+      url: "jubilantafrofarms Market",
+      metaTitle: "jubilantafrofarms Market",
+      h1: "jubilantafrofarms Market",
+      h2: "jubilantafrofarms Market",
+      pageDescription: "jubilantafrofarms Market",
+      metaDescription: "jubilantafrofarms Market",
+      pageTitle: "jubilantafrofarms Market",
+      pageContent: "jubilantafrofarms Market",
+      footerContent: "jubilantafrofarms Market",
       carouselImages: [],
       image: "",
       keywords: []
@@ -16695,7 +16695,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@janimarket.com";
+const emailUser = "info@jubilantafrofarms.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16713,7 +16713,7 @@ async function SendEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "info@janimarket.com",
+    to: "info@jubilantafrofarms.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)
@@ -16855,7 +16855,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@janimarket.com";
+const emailUser = "info@jubilantafrofarms.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendInsuranceEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16873,7 +16873,7 @@ async function SendInsuranceEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "info@janimarket.com",
+    to: "info@jubilantafrofarms.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)
@@ -16906,7 +16906,7 @@ const fs = __webpack_require__(/*! fs */ "fs");
 
 const ejs = __webpack_require__(/*! ejs */ "ejs");
 
-const emailUser = "info@janimarket.com";
+const emailUser = "info@jubilantafrofarms.com";
 const emailPass = "J@tuM@rket.2022";
 async function SendEmail(data) {
   const transporter = nodemailer.createTransport({
@@ -16925,7 +16925,7 @@ async function SendEmail(data) {
   });
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "janimarketk@gmail.com",
+    to: "jubilantafrofarms@gmail.com",
     subject: data.subject,
     html: htmlData
   }; //  console.log('html data ======================>', mainOptions.html)

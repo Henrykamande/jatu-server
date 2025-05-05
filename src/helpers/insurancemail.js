@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 const ejs = require("ejs");
 
-const emailUser = "info@janimarket.com";
+const emailUser = "info@jubilantafrofarms.com";
 const emailPass = "J@tuM@rket.2022";
 
 export async function SendInsuranceEmail(data) {
@@ -23,7 +23,7 @@ export async function SendInsuranceEmail(data) {
 
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "info@janimarket.com",
+    to: "info@jubilantafrofarms.com",
     subject: data.subject,
     html: htmlData,
   };

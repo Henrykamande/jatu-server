@@ -2,7 +2,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 const ejs = require("ejs");
 
-const emailUser = "info@janimarket.com";
+const emailUser = "info@jubilantafrofarms.com";
 const emailPass = "J@tuM@rket.2022";
 
 export async function SendEmail(data) {
@@ -24,7 +24,7 @@ export async function SendEmail(data) {
 
   const mainOptions = {
     from: `"${data.title}" ${emailUser}`,
-    to: "janimarketk@gmail.com",
+    to: "jubilantafrofarms@gmail.com",
     subject: data.subject,
     html: htmlData,
   };
