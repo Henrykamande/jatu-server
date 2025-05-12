@@ -31,10 +31,10 @@ async function createUser(user) {
 		const exits = await User.findOne({ phone: user.phone });
 		const _emailCheck = await User.findOne({ email: user.email });
 		if (_emailCheck) {
-			return { msg: 'Email already used', state: false, err: 'Email taken' };
+			return { msg: 'Email already in use', state: false, err: 'Email taken' };
 		}
 		if (exits) {
-			return { msg: 'Phone already used', state: false, err: 'Phone number taken' };
+			return { msg: 'Phone number already used', state: false, err: 'Phone number taken' };
 		}
 
         const pass = user.password;
@@ -53,6 +53,7 @@ export async function register(req, res, next) {
 
 	try {
 		const { user, err, state, msg } = await createUser(userData);
+
 		if (state) {
 			const { data, token } = await rawLogin(user);
 			return res.send({ state: true, ResultCode: 1200, token, user: data, msg: 'Success' });

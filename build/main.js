@@ -16409,7 +16409,7 @@ async function createUser(user) {
 
     if (_emailCheck) {
       return {
-        msg: 'Email already used',
+        msg: 'Email already in use',
         state: false,
         err: 'Email taken'
       };
@@ -16417,7 +16417,7 @@ async function createUser(user) {
 
     if (exits) {
       return {
-        msg: 'Phone already used',
+        msg: 'Phone number already used',
         state: false,
         err: 'Phone number taken'
       };
@@ -17036,7 +17036,8 @@ module.exports = function (app) {
   app.use("/api/countries", CountriesRoutes);
   app.use("/api/sizes", SizesRoutes);
   app.use("/api/brands", BrandsRoutes);
-  app.use("/api/subcategories", SubCategoryRoutes);
+  app.use("/api/subcategories", SubCategoryRoutes); // users
+
   app.use("/api/users", UsersRoutes);
   app.use("/api/pages", PagesRoutes);
   app.use("/api/seo", SeoRoutes);
