@@ -10,6 +10,7 @@ var UserSchema = new mongoose.Schema({
   house: { type: String },
   role: { type: Number },
   password: { type: String },
+  serialNo: { type: String },
 });
 
 module.exports = mongoose.model("User", UserSchema);

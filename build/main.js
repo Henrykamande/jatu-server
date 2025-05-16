@@ -16356,11 +16356,12 @@ module.exports = router;
 /*!********************************!*\
   !*** ./src/app/users/index.js ***!
   \********************************/
-/*! exports provided: findAll, register, login */
+/*! exports provided: findUserBySerialNo, findAll, register, login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findUserBySerialNo", function() { return findUserBySerialNo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findAll", function() { return findAll; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
@@ -16384,6 +16385,21 @@ var createHash = function (password) {
   return hash;
 };
 
+async function findUserBySerialNo(req, res) {
+  try {
+    const record = await Controller.findOne({
+      serialNo: req.params.serialNo
+    });
+    console.log(req.params.serialNo, "User Serial No");
+    return res.send({
+      record,
+      state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+;
 async function findAll(req, res) {
   try {
     const records = await User.find({});
@@ -16435,7 +16451,6 @@ async function createUser(user) {
       msg: 'success'
     };
   } catch (err) {
-    console.log(err);
     return {
       state: false,
       err,
@@ -16509,7 +16524,8 @@ async function login(req, res) {
           _id: user._id,
           email: user.email,
           phone: user.phone,
-          role: user.role
+          role: user.role,
+          serialNo: user.serialNo
         };
         const secret = 'sdgjfskdfskdfskfy7wywfsdukjfhks6aDFGHJ6j234';
         const token = jwt.sign(data, secret); // return the information including token as JSON
@@ -16524,7 +16540,6 @@ async function login(req, res) {
       }
     }
   } catch (err) {
-    console.log(err);
     return res.send({
       state: false,
       err: err
@@ -16543,7 +16558,8 @@ async function rawLogin(user) {
       phone: user.phone,
       location: user.location,
       house: user.house,
-      role: user.role
+      role: user.role,
+      serialNo: user.serialNo
     };
     const secret = 'sdgjfskdfskdfskfy7wywfsdukjfhks6aDFGHJ6j234';
     const token = jwt.sign(data, secret);
@@ -16596,6 +16612,9 @@ var UserSchema = new mongoose.Schema({
   },
   password: {
     type: String
+  },
+  serialNo: {
+    type: String
   }
 });
 module.exports = mongoose.model("User", UserSchema);
@@ -16612,15 +16631,14 @@ module.exports = mongoose.model("User", UserSchema);
 const {
   register,
   findAll,
+  findUserBySerialNo,
   login
 } = __webpack_require__(/*! ./index.js */ "./src/app/users/index.js");
 
 const router = __webpack_require__(/*! express */ "express").Router();
 
-router.route('/').get(findAll).post(register); // router.route('/:id')
-//     .put(editData)
-//     .get(findById);
-
+router.route('/').get(findAll).post(register);
+router.route('/serial-no/:serialNo').get(findUserBySerialNo);
 router.route('/login').post(login);
 module.exports = router;
 

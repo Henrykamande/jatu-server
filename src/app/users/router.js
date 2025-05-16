@@ -1,13 +1,12 @@
-const  { register, findAll, login } = require('./index.js');
+const  { register, findAll, findUserBySerialNo, login } = require('./index.js');
 const router = require('express').Router();
 
 router.route('/')
     .get(findAll)
     .post(register);
 
-// router.route('/:id')
-//     .put(editData)
-//     .get(findById);
+router.route('/serial-no/:serialNo')
+    .get(findUserBySerialNo);
 
 router.route('/login')
     .post(login);

@@ -15,6 +15,16 @@ var createHash = function (password) {
     return hash;
 };
 
+export async function findUserBySerialNo(req, res) {
+  try {
+    const record = await Controller.findOne({ serialNo: req.params.serialNo });
+	console.log(req.params.serialNo, "User Serial No")
+    return res.send({ record, state: true });
+  } catch (err) {
+    handleErr(res, err);
+  }
+};
+
 export async function findAll (req, res) {
     try {
         const records = await User.find({});
@@ -43,7 +53,6 @@ async function createUser(user) {
 		const _user = await User.create(user);
 		return { state: true, err: null, user: _user, msg: 'success' };
 	} catch (err) {
-		console.log(err);
 		return { state: false, err, msg: `Server error` };
 	}
 }
@@ -86,7 +95,8 @@ export async function login(req, res) {
 					_id: user._id,
                     email: user.email,
                     phone: user.phone,
-					role: user.role
+					role: user.role,
+					serialNo: user.serialNo,
                 }
 
                 const secret = 'sdgjfskdfskdfskfy7wywfsdukjfhks6aDFGHJ6j234';
@@ -102,7 +112,6 @@ export async function login(req, res) {
 			}
 		}
 	} catch (err) {
-		console.log(err);
 		return res.send({ state: false, err: err })
 	}
 };
@@ -117,7 +126,8 @@ async function rawLogin(user) {
 			phone: user.phone,
 			location: user.location,
 			house: user.house,
-			role: user.role
+			role: user.role,
+			serialNo: user.serialNo,
         }
         
         const secret = 'sdgjfskdfskdfskfy7wywfsdukjfhks6aDFGHJ6j234';
