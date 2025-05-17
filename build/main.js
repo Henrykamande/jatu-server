@@ -8016,7 +8016,6 @@ async function findSubs(req, res) {
 async function createRecord(req, res) {
   const uuid = Object(uuid__WEBPACK_IMPORTED_MODULE_2__["v4"])();
   let data = req.body;
-  console.log(data);
   data.farmRandomId = uuid;
   const existingFarm = await Controller.findOne({
     country: data.country,
@@ -10173,21 +10172,50 @@ module.exports = router;
 /*!******************************************!*\
   !*** ./src/app/farm-equipments/index.js ***!
   \******************************************/
-/*! exports provided: findAllListedEquipments, createListedEquiment */
+/*! exports provided: updateListedEquipment, findAllListedEquipments, deleteSelectedEquipment, createListedEquiment, findEquipmentsBySerialNo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateListedEquipment", function() { return updateListedEquipment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findAllListedEquipments", function() { return findAllListedEquipments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSelectedEquipment", function() { return deleteSelectedEquipment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createListedEquiment", function() { return createListedEquiment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findEquipmentsBySerialNo", function() { return findEquipmentsBySerialNo; });
 /* harmony import */ var _controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller.js */ "./src/app/controller.js");
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/index */ "./src/helpers/index.js");
 
 
 const Controller = Object(_controller_js__WEBPACK_IMPORTED_MODULE_0__["default"])("farm-equipments");
+async function updateListedEquipment(req, res) {
+  const id = req.params.id;
+  let data = req.body;
+
+  try {
+    const updatedEquipment = await Controller.update(data, id);
+    return res.send({
+      updatedEquipment,
+      state: true,
+      ResultDesc: 1200
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
 async function findAllListedEquipments(req, res) {
   try {
     const records = await Controller.find({});
+    return res.send({
+      records,
+      state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+async function deleteSelectedEquipment(req, res) {
+  try {
+    const records = await Controller.remove(req.params.id);
     return res.send({
       records,
       state: true
@@ -10223,15 +10251,21 @@ async function createListedEquiment(req, res) {
 
   ;
 }
-; // export async function findByUrl(req, res) {
-//   try {
-//     const record = await Controller.findOne({ url: req.params.url });
-//     return res.send({ record, state: true });
-//   } catch (err) {
-//     handleErr(res, err);
-//   }
-// }
-// export async function findUserContacts(req, res) {
+;
+async function findEquipmentsBySerialNo(req, res) {
+  try {
+    const record = await Controller.find({
+      userSerialNo: req.params.userSerialNo
+    });
+    return res.send({
+      record,
+      state: true
+    });
+  } catch (err) {
+    console.log(err, " farm equipments fetch by user serialNo err ");
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+} // export async function findUserContacts(req, res) {
 //   try {
 //     const record = await Controller.findOne({ _id: req.params.id });
 //     return res.send({ record, state: true });
@@ -10253,6 +10287,9 @@ var mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
 var ListedFarmEquipments = new mongoose.Schema({
   serialNo: {
+    type: String
+  },
+  userSerialNo: {
     type: String
   },
   machineType: {
@@ -10320,12 +10357,18 @@ module.exports = mongoose.model("ListedFarmEquipments", ListedFarmEquipments);
 
 const {
   findAllListedEquipments,
+  deleteSelectedEquipment,
+  updateListedEquipment,
+  findEquipmentsBySerialNo,
   createListedEquiment
 } = __webpack_require__(/*! ./index.js */ "./src/app/farm-equipments/index.js");
 
 const router = __webpack_require__(/*! express */ "express").Router();
 
 router.route('/').get(findAllListedEquipments).post(createListedEquiment);
+router.route('/delete/:id').delete(deleteSelectedEquipment).put(updateListedEquipment);
+router.route('/update/:id').put(updateListedEquipment);
+router.route('/fetched-by-userSerialNo/:userSerialNo').get(findEquipmentsBySerialNo);
 module.exports = router;
 
 /***/ }),
@@ -16356,13 +16399,14 @@ module.exports = router;
 /*!********************************!*\
   !*** ./src/app/users/index.js ***!
   \********************************/
-/*! exports provided: findUserBySerialNo, findAll, register, login */
+/*! exports provided: findUserBySerialNo, findAll, updateUser, register, login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findUserBySerialNo", function() { return findUserBySerialNo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findAll", function() { return findAll; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony import */ var _controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller.js */ "./src/app/controller.js");
@@ -16390,7 +16434,6 @@ async function findUserBySerialNo(req, res) {
     const record = await Controller.findOne({
       serialNo: req.params.serialNo
     });
-    console.log(req.params.serialNo, "User Serial No");
     return res.send({
       record,
       state: true
@@ -16407,6 +16450,21 @@ async function findAll(req, res) {
       records,
       ResultCode: 1200,
       state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+async function updateUser(req, res) {
+  const id = req.params.id;
+  let data = req.body;
+
+  try {
+    const user = await User.update(data, id);
+    return res.send({
+      user,
+      state: true,
+      ResultDesc: 1200
     });
   } catch (err) {
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
@@ -16631,6 +16689,7 @@ module.exports = mongoose.model("User", UserSchema);
 const {
   register,
   findAll,
+  updateUser,
   findUserBySerialNo,
   login
 } = __webpack_require__(/*! ./index.js */ "./src/app/users/index.js");
@@ -16638,6 +16697,7 @@ const {
 const router = __webpack_require__(/*! express */ "express").Router();
 
 router.route('/').get(findAll).post(register);
+router.route('/update/:id').put(updateUser);
 router.route('/serial-no/:serialNo').get(findUserBySerialNo);
 router.route('/login').post(login);
 module.exports = router;

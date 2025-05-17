@@ -18,7 +18,6 @@ var createHash = function (password) {
 export async function findUserBySerialNo(req, res) {
   try {
     const record = await Controller.findOne({ serialNo: req.params.serialNo });
-	console.log(req.params.serialNo, "User Serial No")
     return res.send({ record, state: true });
   } catch (err) {
     handleErr(res, err);
@@ -33,6 +32,19 @@ export async function findAll (req, res) {
     catch (err) {
         handleErr(res, err);
     }
+}
+
+export async function updateUser(req, res) {
+	const id = req.params.id;
+	let data = req.body;
+	
+	try {
+		const user = await User.update(data, id);
+		
+		return res.send({ user,  state: true, ResultDesc: 1200 });
+  } catch (err) {
+	handleErr(res, err);
+  }
 }
 
 async function createUser(user) {

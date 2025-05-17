@@ -75,7 +75,6 @@ export async function findSubs(req, res) {
 export async function createRecord(req, res) {
   const uuid = uuidv4();
   let data = req.body;
-  console.log(data)
   data.farmRandomId = uuid;
   const existingFarm = await Controller.findOne({ country: data.country, zone: data.zone});
 

@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var ListedFarmEquipments = new mongoose.Schema({
     serialNo: { type: String },
+    userSerialNo: { type: String },
     machineType: { type: String },
     make: { type: String },
     model: { type: String },

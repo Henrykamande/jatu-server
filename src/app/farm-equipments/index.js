@@ -3,9 +3,30 @@ import { handleErr, resize_save } from "../../helpers/index";
 
 const Controller = PropertyController("farm-equipments");
 
+export async function updateListedEquipment(req, res) {
+  const id = req.params.id;
+  let data = req.body;
+  
+  try {
+    const updatedEquipment = await Controller.update(data, id);
+    return res.send({ updatedEquipment,  state: true, ResultDesc: 1200 });
+  } catch (err) {
+  handleErr(res, err);
+  }
+}
+
 export async function findAllListedEquipments(req, res) {
   try {
     const records = await Controller.find({});
+    return res.send({ records, state: true });
+  } catch (err) {
+    handleErr(res, err);
+  }
+}
+
+export async function deleteSelectedEquipment(req, res) {
+  try {
+    const records = await Controller.remove(req.params.id);
     return res.send({ records, state: true });
   } catch (err) {
     handleErr(res, err);
@@ -35,14 +56,15 @@ export async function createListedEquiment(req, res) {
   };
 };
 
-// export async function findByUrl(req, res) {
-//   try {
-//     const record = await Controller.findOne({ url: req.params.url });
-//     return res.send({ record, state: true });
-//   } catch (err) {
-//     handleErr(res, err);
-//   }
-// }
+export async function findEquipmentsBySerialNo(req, res) {
+  try {
+    const record = await Controller.find({ userSerialNo: req.params.userSerialNo });
+    return res.send({ record, state: true });
+  } catch (err) {
+    console.log(err, " farm equipments fetch by user serialNo err ")
+    handleErr(res, err);
+  }
+}
 
 // export async function findUserContacts(req, res) {
 //   try {
