@@ -10061,13 +10061,16 @@ module.exports = router;
 /*!*******************************************!*\
   !*** ./src/app/farm-application/index.js ***!
   \*******************************************/
-/*! exports provided: findAllApplications, createRecord */
+/*! exports provided: findAllApplications, createRecord, findFarmApplicantsRecord, editFarmApplicantsRecord, deleteFarmApplicantsRecord */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findAllApplications", function() { return findAllApplications; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createRecord", function() { return createRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findFarmApplicantsRecord", function() { return findFarmApplicantsRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editFarmApplicantsRecord", function() { return editFarmApplicantsRecord; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFarmApplicantsRecord", function() { return deleteFarmApplicantsRecord; });
 /* harmony import */ var _controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller.js */ "./src/app/controller.js");
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/index */ "./src/helpers/index.js");
 
@@ -10094,25 +10097,48 @@ async function createRecord(req, res) {
       ResultDesc: 1200
     });
   } catch (err) {
-    console.log(err, " farms err ");
     Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
   }
-} // export async function findByUrl(req, res) {
-//   try {
-//     const record = await Controller.findOne({ url: req.params.url });
-//     return res.send({ record, state: true });
-//   } catch (err) {
-//     handleErr(res, err);
-//   }
-// }
-// export async function findUserContacts(req, res) {
-//   try {
-//     const record = await Controller.findOne({ _id: req.params.id });
-//     return res.send({ record, state: true });
-//   } catch (err) {
-//     handleErr(res, err);
-//   }
-// }
+}
+async function findFarmApplicantsRecord(req, res) {
+  try {
+    const record = await Controller.find({
+      userSerialNo: req.params.userSerialNo
+    });
+    return res.send({
+      record,
+      state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+async function editFarmApplicantsRecord(req, res) {
+  const data = req.body;
+  const id = req.params.userSerialNo;
+
+  try {
+    const record = await Controller.update(data, id);
+    return res.send({
+      state: true,
+      record,
+      ResultDesc: 1200
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+async function deleteFarmApplicantsRecord(req, res) {
+  try {
+    await Controller.remove(req.params.userSerialNo);
+    return res.send({
+      msg: "Applicants details deleted successfuly",
+      state: true
+    });
+  } catch (err) {
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
 
 /***/ }),
 
@@ -10131,6 +10157,9 @@ var FarmApplication = new mongoose.Schema({
     type: Number
   },
   name: {
+    type: String
+  },
+  userSerialNo: {
     type: String
   },
   phoneNumber: {
@@ -10158,12 +10187,16 @@ module.exports = mongoose.model("FarmApplication", FarmApplication);
 
 const {
   createRecord,
-  findAllApplications
+  findAllApplications,
+  editFarmApplicantsRecord,
+  deleteFarmApplicantsRecord,
+  findFarmApplicantsRecord
 } = __webpack_require__(/*! ./index.js */ "./src/app/farm-application/index.js");
 
 const router = __webpack_require__(/*! express */ "express").Router();
 
 router.route('/').get(findAllApplications).post(createRecord);
+router.route('/:userSerialNo').get(findFarmApplicantsRecord).put(editFarmApplicantsRecord).delete(deleteFarmApplicantsRecord);
 module.exports = router;
 
 /***/ }),
@@ -10215,9 +10248,9 @@ async function findAllListedEquipments(req, res) {
 }
 async function deleteSelectedEquipment(req, res) {
   try {
-    const records = await Controller.remove(req.params.id);
+    await Controller.remove(req.params.id);
     return res.send({
-      records,
+      msg: "Deleted successfully",
       state: true
     });
   } catch (err) {
@@ -16554,7 +16587,8 @@ async function login(req, res) {
   const {
     email,
     password
-  } = req.body; // find the user
+  } = req.body;
+  console.log(email, password, "user login request"); // find the user
 
   try {
     const user = await User.findOne({

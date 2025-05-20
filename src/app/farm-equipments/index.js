@@ -26,8 +26,8 @@ export async function findAllListedEquipments(req, res) {
 
 export async function deleteSelectedEquipment(req, res) {
   try {
-    const records = await Controller.remove(req.params.id);
-    return res.send({ records, state: true });
+    await Controller.remove(req.params.id);
+    return res.send({ msg: "Deleted successfully", state: true });
   } catch (err) {
     handleErr(res, err);
   }
