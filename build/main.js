@@ -9763,8 +9763,10 @@ async function createRecord(req, res) {
 
 const mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
-const Schema = mongoose.Schema;
-const EquipmentApplications = new mongoose.Schema({
+const Schema = mongoose.Schema; // Define your schema here
+
+const EquipmentApplicationsSchema = new Schema({
+  // your schema fields
   countryAt: {
     type: String
   },
@@ -9796,9 +9798,42 @@ const EquipmentApplications = new mongoose.Schema({
   },
   farmingSchedule: {
     type: String
+  },
+  user: {
+    first_name: String,
+    last_name: String,
+    _id: Schema.Types.ObjectId,
+    email: String,
+    phone: String,
+    serialNo: String
+  },
+  equipmentToRent: {
+    _id: Schema.Types.ObjectId,
+    userSerialNo: String,
+    serialNo: String,
+    machineType: String,
+    imageLink: String,
+    make: String,
+    model: String,
+    capacity: String,
+    driveType: String,
+    mainUse: String,
+    countryAt: String,
+    region: String,
+    district: String,
+    ward: String,
+    village: String,
+    preferredContract: String,
+    pricing: String,
+    averagePrice: String,
+    condition: String,
+    timeLine: String,
+    __v: Number
   }
-});
-module.exports = mongoose.model("EquipmentApplications", EquipmentApplications);
+}); // Create and export model
+
+const EquipmentApplications = mongoose.model('EquipmentApplications', EquipmentApplicationsSchema);
+module.exports = EquipmentApplications;
 
 /***/ }),
 
@@ -10205,7 +10240,7 @@ module.exports = router;
 /*!******************************************!*\
   !*** ./src/app/farm-equipments/index.js ***!
   \******************************************/
-/*! exports provided: updateListedEquipment, findAllListedEquipments, deleteSelectedEquipment, createListedEquiment, findEquipmentsBySerialNo */
+/*! exports provided: updateListedEquipment, findAllListedEquipments, deleteSelectedEquipment, createListedEquiment, findEquipmentsBySerialNo, findEquipmentsById */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10215,6 +10250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteSelectedEquipment", function() { return deleteSelectedEquipment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createListedEquiment", function() { return createListedEquiment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findEquipmentsBySerialNo", function() { return findEquipmentsBySerialNo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findEquipmentsById", function() { return findEquipmentsById; });
 /* harmony import */ var _controller_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../controller.js */ "./src/app/controller.js");
 /* harmony import */ var _helpers_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/index */ "./src/helpers/index.js");
 
@@ -10289,6 +10325,20 @@ async function findEquipmentsBySerialNo(req, res) {
   try {
     const record = await Controller.find({
       userSerialNo: req.params.userSerialNo
+    });
+    return res.send({
+      record,
+      state: true
+    });
+  } catch (err) {
+    console.log(err, " farm equipments fetch by user serialNo err ");
+    Object(_helpers_index__WEBPACK_IMPORTED_MODULE_1__["handleErr"])(res, err);
+  }
+}
+async function findEquipmentsById(req, res) {
+  try {
+    const record = await Controller.findOne({
+      _id: req.params.id
     });
     return res.send({
       record,
@@ -10393,6 +10443,7 @@ const {
   deleteSelectedEquipment,
   updateListedEquipment,
   findEquipmentsBySerialNo,
+  findEquipmentsById,
   createListedEquiment
 } = __webpack_require__(/*! ./index.js */ "./src/app/farm-equipments/index.js");
 
@@ -10402,6 +10453,7 @@ router.route('/').get(findAllListedEquipments).post(createListedEquiment);
 router.route('/delete/:id').delete(deleteSelectedEquipment).put(updateListedEquipment);
 router.route('/update/:id').put(updateListedEquipment);
 router.route('/fetched-by-userSerialNo/:userSerialNo').get(findEquipmentsBySerialNo);
+router.route('/fetched-by-id/:id').get(findEquipmentsById);
 module.exports = router;
 
 /***/ }),

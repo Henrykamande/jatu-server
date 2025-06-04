@@ -66,6 +66,17 @@ export async function findEquipmentsBySerialNo(req, res) {
   }
 }
 
+
+export async function findEquipmentsById(req, res) {
+  try {
+    const record = await Controller.findOne({ _id: req.params.id });
+    return res.send({ record, state: true });
+  } catch (err) {
+    console.log(err, " farm equipments fetch by user serialNo err ")
+    handleErr(res, err);
+  }
+}
+
 // export async function findUserContacts(req, res) {
 //   try {
 //     const record = await Controller.findOne({ _id: req.params.id });

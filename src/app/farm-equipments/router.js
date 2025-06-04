@@ -1,4 +1,4 @@
-const  { findAllListedEquipments,deleteSelectedEquipment, updateListedEquipment, findEquipmentsBySerialNo, createListedEquiment } = require('./index.js');
+const  { findAllListedEquipments,deleteSelectedEquipment, updateListedEquipment, findEquipmentsBySerialNo,findEquipmentsById, createListedEquiment } = require('./index.js');
 const router = require('express').Router();
 
 router.route('/')
@@ -14,5 +14,8 @@ router.route('/update/:id')
 
 router.route('/fetched-by-userSerialNo/:userSerialNo')
     .get(findEquipmentsBySerialNo)
+
+router.route('/fetched-by-id/:id')
+    .get(findEquipmentsById)
 
 module.exports = router;
