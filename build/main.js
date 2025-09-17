@@ -7564,6 +7564,8 @@ function unpipe(stream) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! dotenv */ "dotenv").config();
+
 const express = __webpack_require__(/*! express */ "express");
 
 const fileUpload = __webpack_require__(/*! express-fileupload */ "express-fileupload");
@@ -7583,7 +7585,8 @@ var cors = __webpack_require__(/*! cors */ "cors"); // mongoose stuffs
 
 const mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/jubilantafrofarms", {
+const dbUrl = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/jubilantafrofarms";
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -17309,6 +17312,17 @@ module.exports = require("date-fns/locale");
 /***/ (function(module, exports) {
 
 module.exports = require("debug");
+
+/***/ }),
+
+/***/ "dotenv":
+/*!*************************!*\
+  !*** external "dotenv" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("dotenv");
 
 /***/ }),
 

@@ -1,44 +1,51 @@
 # syntax = docker/dockerfile:1
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=20.18.0
-FROM node:${NODE_VERSION}-slim AS base
-
+ARG NODE_VERSION=16
+FROM node:${NODE_VERSION}-bullseye-slim AS base
 LABEL fly_launch_runtime="Node.js"
-
-# Node.js app lives here
 WORKDIR /app
 
-# Set production environment
-ENV NODE_ENV="production"
+# Final image is production; we'll override during build
+ENV NODE_ENV=production
 ARG YARN_VERSION=1.22.21
-RUN npm install -g yarn@$YARN_VERSION --force
+RUN npm install -g yarn@${YARN_VERSION} --force
 
-
-# Throw-away build stage to reduce size of final image
+# ---------------- Build stage ----------------
 FROM base AS build
+# Ensure devDependencies (backpack/webpack) install
+ENV NODE_ENV=development
 
-# Install packages needed to build node modules
+# Build toolchain for native modules (e.g., sharp) & node-gyp
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y \
+      python3 make g++ pkg-config && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install node modules
+# Install ALL deps (incl dev)
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --production=false
 
-# Copy application code
+# Copy source and build
 COPY . .
-
-# Build application
 RUN yarn run build
 
+# ---------------- Runtime stage ----------------
+FROM base AS runtime
+WORKDIR /app
 
-# Final stage for app image
-FROM base
+# Install only production deps
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production=true && yarn cache clean
 
-# Copy built application
-COPY --from=build /app /app
+# Bring in build output and runtime assets only
+COPY --from=build /app/build ./build
+COPY --from=build /app/bin ./bin
+COPY --from=build /app/public ./public
+COPY --from=build /app/views ./views
+# (add any other runtime dirs/files your app needs)
 
-# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "yarn", "run", "start" ]
+# If your app starts via Express entry:
+CMD ["yarn","run","start"]
+# If you run the Backpack bundle instead, use:
+# CMD ["node","build/main.js"]

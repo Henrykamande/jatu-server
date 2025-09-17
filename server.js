@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const path = require("path");
@@ -9,7 +11,11 @@ var cors = require("cors");
 // mongoose stuffs
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/jubilantafrofarms", {
+
+const dbUrl = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/jubilantafrofarms";
+
+
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

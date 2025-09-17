@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "backpack",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider backpack build"
+    "build": "backpack build"
   },
   "dependencies": {
     "backpack-core": "^0.8.4",
@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.29.3",
     "debug": "~2.6.9",
+    "dotenv": "^17.2.2",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "express-fileupload": "^1.2.0",

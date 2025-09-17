@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for jatu-server-damp-silence-771 on 2025-09-17T17:21:21+03:00
+# fly.toml app configuration file generated for jatu-server-long-cloud-6971 on 2025-09-17T17:58:34+03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'jatu-server-damp-silence-771'
+app = 'jatu-server-long-cloud-6971'
 primary_region = 'jnb'
 
 [build]
