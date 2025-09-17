@@ -11,8 +11,7 @@ var cors = require("cors");
 // mongoose stuffs
 const mongoose = require("mongoose");
 
-const dbUrl =
-  "mongodb://127.0.0.1:27017/jubilantafrofarms";
+const dbUrl = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/jubilantafrofarms";
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
