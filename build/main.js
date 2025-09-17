@@ -7585,7 +7585,7 @@ var cors = __webpack_require__(/*! cors */ "cors"); // mongoose stuffs
 
 const mongoose = __webpack_require__(/*! mongoose */ "mongoose");
 
-const dbUrl = process.env.DATABASE_URL || "mongodb://127.0.0.1:27017/jubilantafrofarms";
+const dbUrl = "mongodb://127.0.0.1:27017/jubilantafrofarms";
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
