@@ -34,6 +34,7 @@ app.use(
 
 app.use(cors());
 
+
 app.set("view engine", "ejs");
 
 //admin routes
